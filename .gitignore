@@ -1,3 +1,4 @@
-.vscode
+.vscode/
 .ipynb_checkpoints
 .DS_Store
+/input/misc/*
