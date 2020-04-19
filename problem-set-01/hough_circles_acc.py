@@ -8,8 +8,8 @@ def hough_circles_acc(img_edges, radius):
     y_idx, x_idx = np.nonzero(img_edges)
     for i in range(len(x_idx)):
         x, y = x_idx[i], y_idx[i]
-        a = (y - radius * np.sin(np.deg2rad(theta))).astype(np.uint)
-        b = (x - radius * np.cos(np.deg2rad(theta))).astype(np.uint)
+        b = (y - radius * np.sin(np.deg2rad(theta))).astype(np.uint)
+        a = (x - radius * np.cos(np.deg2rad(theta))).astype(np.uint)
         mask = (a < m) & (b < n)
         a, b = a[mask], b[mask]
         c = np.stack([a, b], 1)
