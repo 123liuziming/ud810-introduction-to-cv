@@ -1,3 +1,4 @@
+# coding=utf-8
 import numpy as np
 import cv2
 
@@ -25,7 +26,12 @@ def hough_line(img, rho_scale=1, thetas=np.arange(-90, 90, 1)):
         d = (x * np.cos(np.deg2rad(thetas)) + y * np.sin(np.deg2rad(thetas))).astype(int)
         d += rho_max
         d = (d / rho_scale).astype(int)
-        accumulator[d, thetas] += 1
+        c = np.stack([d, thetas], 1)
+        cc = np.ascontiguousarray(c).view(np.dtype((np.void, c.dtype.itemsize * c.shape[1])))
+        _, idxs, counts = np.unique(cc, return_index=True, return_counts=True)
+
+        uc = c[idxs].astype(np.uint)
+        accumulator[uc[:, 0], uc[:, 1]] += counts
     accumulator = cv2.normalize(accumulator, accumulator, 0, 255, cv2.NORM_MINMAX, dtype=cv2.CV_8UC1)
 
     return accumulator, thetas, rho
