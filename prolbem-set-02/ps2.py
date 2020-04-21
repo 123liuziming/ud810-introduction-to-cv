@@ -34,8 +34,6 @@ def Q3(inputPath, outputPath):
     R = cv2.imread(os.path.join(inputPath, "pair2-R.png"), cv2.IMREAD_GRAYSCALE)
     L = cv2.pyrDown(cv2.GaussianBlur(cv2.equalizeHist(L), (5,) * 2, 3))
     R = cv2.pyrDown(cv2.GaussianBlur(cv2.equalizeHist(R), (5,) * 2, 3))
-    L = L * 1.0 / 255.0
-    R = R * 1.0 / 255.0
     D_L = np.abs(disparity(L, R, 7, 100, cv2.TM_CCORR_NORMED))
     D_R = np.abs(disparity(R, L, 7, 100, cv2.TM_CCORR_NORMED))
     D_L = cv2.normalize(D_L, D_L, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
