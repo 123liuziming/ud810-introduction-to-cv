@@ -40,7 +40,6 @@ def fundamentalMatrix(inputPath, rank=3, rank3Matrix=None):
         return F
     return None
 
-
 def drawEpipolarLine(inputPath, F, outputPath):
     img_a = cv2.imread(os.path.join(inputPath, "pic_a.jpg"))
     img_b = cv2.imread(os.path.join(inputPath, "pic_b.jpg"))
